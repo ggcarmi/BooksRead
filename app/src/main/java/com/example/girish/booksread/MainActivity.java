@@ -3,9 +3,11 @@ package com.example.girish.booksread;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.girish.booksread.activities.BarcodeScannerActivity;
 
@@ -32,5 +34,17 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+       if(resultCode== BARCODE_REQUEST){
+           ISBNTextView.setText(data.getStringExtra("BARCODE_RESULT"));
+       }
+        else{
+           Toast.makeText(MainActivity.this,"Cannot read bro",Toast.LENGTH_SHORT).show();
+       }
     }
 }

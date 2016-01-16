@@ -38,6 +38,7 @@ public class BarcodeScannerActivity extends AppCompatActivity implements ZXingSc
         resultIntent = new Intent();
         resultIntent.putExtra("BARCODE_RESULT",result.getText());
         setResult(MainActivity.BARCODE_REQUEST,resultIntent);
+
         mScannerView.stopCamera();           // Stop camera on pause
         finish();
 
