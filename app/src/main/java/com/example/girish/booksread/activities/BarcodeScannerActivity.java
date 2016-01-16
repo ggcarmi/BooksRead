@@ -1,10 +1,12 @@
 package com.example.girish.booksread.activities;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
+import com.example.girish.booksread.MainActivity;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -26,9 +28,20 @@ public class BarcodeScannerActivity extends AppCompatActivity implements ZXingSc
      */
 
 
+    Intent resultIntent;
+
+
     @Override
     public void handleResult(Result result) {
+
         Log.i("READ",result.getText());
+        resultIntent = new Intent();
+        resultIntent.putExtra("BARCODE_RESULT",result.getText());
+        setResult(MainActivity.BARCODE_REQUEST,resultIntent);
+        mScannerView.stopCamera();           // Stop camera on pause
+        finish();
+
+
     }
     private ZXingScannerView mScannerView;
 
@@ -51,5 +64,7 @@ public class BarcodeScannerActivity extends AppCompatActivity implements ZXingSc
         super.onPause();
         mScannerView.stopCamera();           // Stop camera on pause
     }
+
+
 
 }

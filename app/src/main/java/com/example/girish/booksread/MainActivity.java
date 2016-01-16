@@ -5,24 +5,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.girish.booksread.activities.BarcodeScannerActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button ScanButton;
+    private TextView ISBNTextView;
+    public static final int BARCODE_REQUEST = 1;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ScanButton = (Button) findViewById(R.id.BarcodeScanButton);
+        ISBNTextView = (TextView) findViewById(R.id.ISBNeditText);
 
         ScanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, BarcodeScannerActivity.class);
-                startActivity(intent);
+                startActivityForResult(intent,BARCODE_REQUEST);
             }
         });
 
