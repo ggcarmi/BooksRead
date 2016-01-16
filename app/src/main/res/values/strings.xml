@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BooksRead</string>
+    <string name="main_scan_text">Scan</string>
+</resources>
